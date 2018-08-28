@@ -47,15 +47,18 @@ X_test = sc.transform(X_test)
 import keras
 from keras.models import Sequential
 from keras.layers import Dense
+from keras.layers import Dropout
 
 # Initialising the ANN
 classifier = Sequential()
 
-# Adding the input layer and the first hidden layer
+# Adding the input layer and the first hidden layer (with dropout)
 classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu', input_dim = 11)) # 6 nodes in hidden layer, initialize weights uniformly, use rectifier funtion for hidden layer, except 11 input nodes
+classifier.add(Dropout(p = 0.1)) # Disable 10% of the neurons on each iteration
 
-# Adding the second hidden layer
+# Adding the second hidden layer (with dropout)
 classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu')) # input_dim already specified in previous hidden layer
+classifier.add(Dropout(p = 0.1))
 
 # Adding the output layer
 classifier.add(Dense(units = 1, kernel_initializer = 'uniform', activation = 'sigmoid')) # only 1 node in output layer, use sigmoid function for probability
@@ -114,6 +117,6 @@ mean = accuracies.mean()
 variance = accuracies.std()
 
 # Improving the ANN
-
+# Dropout regularization to reduce overfitting if needed (in part 2 above)
 
 # Tuning the ANN
