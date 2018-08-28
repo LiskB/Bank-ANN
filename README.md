@@ -1,6 +1,6 @@
 # Bank Customer Artificial Neural Network
 
-This is an artificial neural network that uses Python to predict whether a customer will leave a bank based on multiple independant variables (some of which are credit score, age and gender). The neural network is trained on a set of data and is applied to other data to test its accuracy.
+This is an artificial neural network that uses Python to predict whether a customer will leave a bank based on multiple independent variables (some of which are credit score, age and gender). The neural network is trained on a set of data and is applied to other data to test its accuracy.
 
 This challenge was part of the Udemy course "[Deep Learning A-Z](https://www.udemy.com/deeplearning/)".
 
