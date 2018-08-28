@@ -1,14 +1,3 @@
-# Artificial Neural Network
-
-# Installing Theano
-# pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
-
-# Installing Tensorflow
-# pip install tensorflow
-
-# Installing Keras
-# pip install --upgrade keras
-
 # Part 1 - Data Preprocessing
 
 # Importing the libraries
@@ -41,7 +30,9 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Part 2 - Make the ANN
+
+
+# Part 2 - Make the ANN - Method 1
 
 # Importing the Keras libraries and packages
 import keras
@@ -95,7 +86,9 @@ new_prediction = (new_prediction > 0.5)
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
-# Part 4 - Evaluating, Improving and Tuning the ANN
+
+
+# Part 4 - Evaluating, Improving and Tuning the ANN - Method 2
 # IMPORTANT NOTE: ONLY RUN THIS SECTION IF PART 2 AND 3 ARE NOT RUN
 # This is an improved way to build the ANN, but I left the first part in for referral purposes
 # Only run 'Evaluating the ANN' OR 'Tuning the ANN', not both
