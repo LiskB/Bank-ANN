@@ -98,6 +98,8 @@ cm = confusion_matrix(y_test, y_pred)
 # Part 4 - Evaluating, Improving and Tuning the ANN
 # IMPORTANT NOTE: ONLY RUN THIS SECTION IF PART 2 AND 3 ARE NOT RUN
 # This is an improved way to build the ANN, but I left the first part in for referral purposes
+# Only run 'Evaluating the ANN' OR 'Tuning the ANN', not both
+# Also note that Tuning the ANN may take several hours, depending on processing power
 
 # Evaluating the ANN
 from keras.wrappers.scikit_learn import KerasClassifier
@@ -120,3 +122,20 @@ variance = accuracies.std()
 # Dropout regularization to reduce overfitting if needed (in part 2 above)
 
 # Tuning the ANN
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import GridSearchCV
+from keras.models import Sequential
+from keras.layers import Dense
+def build_classifier(optimizer):
+    classifier = Sequential()
+    classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu', input_dim = 11))
+    classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu'))
+    classifier.add(Dense(units = 1, kernel_initializer = 'uniform', activation = 'sigmoid'))
+    classifier.compile(optimizer = optimizer, loss = 'binary_crossentropy', metrics = ['accuracy'])
+    return classifier
+classifier = KerasClassifier(build_fn = build_classifier)
+parameters = {'batch_size': [25, 32], 'epoch': [100, 500], 'optimizer': ['adam', 'rmsprop']} # create dictionary for parameters to optimize
+grid_search = GridSearchCV(estimator = classifier, param_grid = parameters, scoring = 'accuracy', cv = 10)
+grid_search = grid_search.fit(X_train, y_train)
+best_parameters = grid_search.best_params_
+best_accuracy = grid_search.best_score_
